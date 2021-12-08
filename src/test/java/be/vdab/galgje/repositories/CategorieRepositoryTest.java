@@ -1,5 +1,6 @@
 package be.vdab.galgje.repositories;
 
+import be.vdab.galgje.domain.Woord;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -31,5 +32,11 @@ public class CategorieRepositoryTest extends AbstractTransactionalJUnit4SpringCo
     void findById() {
         assertThat(repository.findById(idVanTestCategorie()))
                 .hasValueSatisfying(categorie -> assertThat(categorie.getNaam()).isEqualTo("test"));
+    }
+
+    @Test
+    void woordenLezen(){
+        assertThat(repository.findById(idVanTestCategorie()))
+                .hasValueSatisfying(categorie -> assertThat(categorie.getWoorden()).extracting(Woord::getWoord).contains("testwoord"));
     }
 }

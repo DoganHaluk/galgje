@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Galgje')"></head>
+<body>
+<main>
+    <nav th:replace="fragments::header"></nav>
+    <h2>Kies een categorie!</h2>
+    <ul class="buttons">
+<li  th:each="categorie:${categorieen}" th:object="${categorie}">
+            <a th:text="*{naam}" th:href="@{/categorie/{id}/nieuwspel(id=*{id})}"></a>
+</li>
+
+    </ul>
+</main>
+<footer th:replace="fragments::footer"></footer>
+</body>
+</html>
