@@ -7,20 +7,28 @@
     <h2 th:object="${categorie}">
         <th:block th:text="*{naam}"></th:block>
     </h2>
-    <img th:src="@{/images/{verkeerdePogingen}.png (verkeerdePogingen=*{verkeerdePogingen})}"
-         th:alt="|*{verkeerdePogingen} verkeerde pogingen|">
-    <div th:if="not *{verloren} and not *{gewonnen}">
+    <div class="gallowspole">
+        <img th:src="@{/images/{verkeerdePogingen}.png (verkeerdePogingen=*{verkeerdePogingen})}"
+             th:alt="|*{verkeerdePogingen} verkeerde pogingen|">
+    </div>
+    <div class="word" th:if="not *{verloren} and not *{gewonnen}">
         <th:block th:text="*{puntjes}"></th:block>
     </div>
-    <div th:if="*{verloren}">U bent verloren, de saus was
-        <th:block th:text="*{woord}"></th:block>
+    <div class="text">
+        <div th:if="*{verloren}">U bent verloren, de woord was
+            <th:block th:text="*{woord}"></th:block>.
+        </div>
+        <div th:if="*{gewonnen}">U bent gewonnen, de woord was
+            <th:block th:text="*{woord}"></th:block>.
+        </div>
     </div>
-    <div th:if="*{gewonnen}">U bent gewonnen, u kan het spel opnieuw starten.</div>
-    <ul class="naastMekaar" th:if="not *{verloren} and not *{gewonnen}">
-        <li th:each="letter:${alfabet}">
-            <a th:href="@{/categorie/{id}/{letter}(letter=${letter})}" th:text="${letter}"></a>
-        </li>
-    </ul>
+    <div class="naastMekaar" th:if="not *{verloren} and not *{gewonnen}">
+        <form th:each="letter:${alfabet}" th:action="@{/categorie/{id}/{letter}(id=${id}, letter=${letter})}"
+              method="post">
+            <button th:text="${letter}"></button>
+        </form>
+    </div>
+
 </main>
 <footer th:replace="fragments::footer"></footer>
 </body>

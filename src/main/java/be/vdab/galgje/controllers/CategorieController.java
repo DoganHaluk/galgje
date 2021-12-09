@@ -15,11 +15,11 @@ import java.util.concurrent.ThreadLocalRandom;
 @Controller
 @RequestMapping("categorie")
 class CategorieController {
-    private final char[] alfabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+    private final char[] alfabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
     private final CategorieService categorieService;
     private final RaadHetWoord raadHetWoord;
 
-    CategorieController(CategorieService categorieService, RaadHetWoord raadHetWoord) {
+    public CategorieController(CategorieService categorieService, RaadHetWoord raadHetWoord) {
         this.categorieService = categorieService;
         this.raadHetWoord = raadHetWoord;
     }
@@ -38,18 +38,17 @@ class CategorieController {
 
     @GetMapping("{id}")
     public ModelAndView categoryNaam(@PathVariable long id){
-        var modelAndView = new ModelAndView("woordraden", "alfabet", alfabet);
+        var modelAndView = new ModelAndView("woordraden", "alfabet", alfabet).addObject(raadHetWoord);
         categorieService.findById(id).ifPresent(categorie -> modelAndView.addObject(categorie));
         return modelAndView;
     }
 
     @PostMapping("{id}/{letter}")
-    public ModelAndView raden(@PathVariable char letter, Errors errors){
-        if(errors.hasErrors()){
-            return new ModelAndView("woordraden").addObject(raadHetWoord);
-        }
+    public ModelAndView raden(@PathVariable(value = "id", required = false) long id, @PathVariable(value = "letter", required = false) char letter){
         raadHetWoord.gok(letter);
         raadHetWoord.voegLetterToe(letter);
+        var modelAndView = new ModelAndView("woordraden");
+        categorieService.findById(id).ifPresent(categorie -> modelAndView.addObject(categorie));
         return new ModelAndView("redirect:/categorie/{id}");
     }
 }

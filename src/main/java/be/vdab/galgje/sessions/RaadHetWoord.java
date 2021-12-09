@@ -18,7 +18,7 @@ public class RaadHetWoord implements Serializable {
     private Set<Character> letters = new TreeSet<>();
 
     public void reset(String woord) {
-        this.woord = woord;
+        this.woord = woord.toUpperCase();
         puntjes = new StringBuilder("-".repeat(woord.length()));
         letters = new TreeSet<>();
         verkeerdePogingen = 0;
