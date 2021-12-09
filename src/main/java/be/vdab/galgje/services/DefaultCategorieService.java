@@ -1,6 +1,8 @@
 package be.vdab.galgje.services;
 
 import be.vdab.galgje.domain.Categorie;
+import be.vdab.galgje.domain.Woord;
+import be.vdab.galgje.exceptions.CategorieNietGevondenException;
 import be.vdab.galgje.repositories.CategorieRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +20,7 @@ public class DefaultCategorieService implements CategorieService {
     }
 
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Categorie> findAll() {
         return categorieRepository.findAll();
     }
@@ -27,5 +29,14 @@ public class DefaultCategorieService implements CategorieService {
     @Transactional(readOnly = true)
     public Optional<Categorie> findById(long id) {
         return categorieRepository.findById(id);
+    }
+
+    @Override
+    public List<Woord> findWoordenByCategorie(long id) {
+        if (categorieRepository.findById(id).isPresent()) {
+            return categorieRepository.findById(id).get().getWoorden();
+        } else {
+            throw new CategorieNietGevondenException();
+        }
     }
 }

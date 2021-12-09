@@ -34,13 +34,16 @@ public class RaadHetWoord implements Serializable {
                 letterIndex = woord.indexOf(letter, letterIndex + 1);
             } while (letterIndex != -1);
         }
-    }public String getPuntjes() {
+    }
+
+    public String getPuntjes() {
         return puntjes.toString();
     }
 
     public String getWoord() {
         return woord;
     }
+
     public int getVerkeerdePogingen() {
         return verkeerdePogingen;
     }

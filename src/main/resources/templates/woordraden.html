@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Raad het woord')"></head>
+<body>
+<main th:object="${raadHetWoord}">
+    <nav th:replace="fragments::header"></nav>
+    <h2 th:object="${categorie}">
+        <th:block th:text="*{naam}"></th:block>
+    </h2>
+    <img th:src="@{/images/{verkeerdePogingen}.png (verkeerdePogingen=*{verkeerdePogingen})}"
+         th:alt="|*{verkeerdePogingen} verkeerde pogingen|">
+    <div th:if="not *{verloren} and not *{gewonnen}">
+        <th:block th:text="*{puntjes}"></th:block>
+    </div>
+    <div th:if="*{verloren}">U bent verloren, de saus was
+        <th:block th:text="*{woord}"></th:block>
+    </div>
+    <div th:if="*{gewonnen}">U bent gewonnen, u kan het spel opnieuw starten.</div>
+    <ul class="naastMekaar" th:if="not *{verloren} and not *{gewonnen}">
+        <li th:each="letter:${alfabet}">
+            <a th:href="@{/categorie/{id}/{letter}(letter=${letter})}" th:text="${letter}"></a>
+        </li>
+    </ul>
+</main>
+<footer th:replace="fragments::footer"></footer>
+</body>
+</html>

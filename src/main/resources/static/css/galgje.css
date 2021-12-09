@@ -47,6 +47,14 @@ h2 {
     display: inline-block;
 }
 
+.naastMekaar {
+    padding-left: 0;
+}
+
+.naastMekaar li {
+    display: inline;
+}
+
 footer {
     display: flex;
     background-color: #ef973e;

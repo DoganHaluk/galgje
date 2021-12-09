@@ -5,12 +5,11 @@
 <main>
     <nav th:replace="fragments::header"></nav>
     <h2>Kies een categorie!</h2>
-    <ul class="buttons">
-<li  th:each="categorie:${categorieen}" th:object="${categorie}">
-            <a th:text="*{naam}" th:href="@{/categorie/{id}/nieuwspel(id=*{id})}"></a>
-</li>
-
-    </ul>
+    <div class="buttons">
+        <form th:each="categorie:${categorieen}" th:object="${categorie}" th:action="@{/categorie/{id}/nieuwspel(id=*{id})}" method="post">
+            <button th:text="*{naam}"></button>
+        </form>
+    </div>
 </main>
 <footer th:replace="fragments::footer"></footer>
 </body>
