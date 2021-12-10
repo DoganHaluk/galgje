@@ -15,20 +15,18 @@
         <th:block th:text="*{puntjes}"></th:block>
     </div>
     <div class="text">
-        <div th:if="*{verloren}">U bent verloren, de woord was
+        <div th:if="*{verloren}">U bent verloren, het woord was
             <th:block th:text="*{woord}"></th:block>.
         </div>
-        <div th:if="*{gewonnen}">U bent gewonnen, de woord was
+        <div th:if="*{gewonnen}">U bent gewonnen, het woord was
             <th:block th:text="*{woord}"></th:block>.
         </div>
     </div>
     <div class="naastMekaar" th:if="not *{verloren} and not *{gewonnen}">
-        <form th:each="letter:${alfabet}" th:action="@{/categorie/{id}/{letter}(id=${id}, letter=${letter})}"
-              method="post">
-            <button th:text="${letter}"></button>
+        <form th:each="letter:${alfabet}" th:action="@{/categorie/{id}/{letter}(id=${id}, letter=${letter})}" method="post">
+            <button th:text="${letter}" th:disabled="${raadHetWoord.letters.contains(letter)}"></button>
         </form>
     </div>
-
 </main>
 <footer th:replace="fragments::footer"></footer>
 </body>

@@ -3,7 +3,6 @@ package be.vdab.galgje.controllers;
 import be.vdab.galgje.services.CategorieService;
 import be.vdab.galgje.sessions.RaadHetWoord;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +24,6 @@ class CategorieController {
     }
 
     private String randomWoord(long id) {
-        //var categorie=categorieService.findById(id);
         var woorden= categorieService.findWoordenByCategorie(id);
         return woorden.get(ThreadLocalRandom.current().nextInt(woorden.size())).getWoord();
     }
@@ -44,7 +42,7 @@ class CategorieController {
     }
 
     @PostMapping("{id}/{letter}")
-    public ModelAndView raden(@PathVariable(value = "id", required = false) long id, @PathVariable(value = "letter", required = false) char letter){
+    public ModelAndView raden(@PathVariable long id, @PathVariable char letter){
         raadHetWoord.gok(letter);
         raadHetWoord.voegLetterToe(letter);
         var modelAndView = new ModelAndView("woordraden");

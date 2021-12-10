@@ -1,15 +1,12 @@
 main {
     background-image: url("wildwest.jpg");
     height: 766px;
+    max-width: 1000px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-
-}
-
-nav {
-    background: transparent;
+    margin: auto;
 }
 
 nav a {
@@ -33,22 +30,14 @@ h2 {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding: 0;
-    list-style-type: none;
     font-size: larger;
 }
 
-.buttons a {
-    background-color: white;
-    border: 2px solid black;
-    color: black;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+.buttons button {
+    border-radius: 16px;
 }
 
-.gallowspole img{
+.gallowspole img {
     width: 30%;
     height: 30%;
     display: block;
@@ -56,12 +45,13 @@ h2 {
     margin-right: auto;
 }
 
-.word{
+.word {
     text-align: center;
     font-size: x-large;
+    margin-bottom: 100px;
 }
 
-.text{
+.text {
     text-align: center;
     font-size: x-large;
     font-family: Playbill, serif;
@@ -73,7 +63,7 @@ h2 {
     flex-wrap: wrap;
 }
 
-.naastMekaar button{
+.naastMekaar button {
     width: 30px;
 }
 
