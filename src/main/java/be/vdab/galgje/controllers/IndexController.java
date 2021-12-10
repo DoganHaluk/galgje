@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 class IndexController {
     private final CategorieService categorieService;
 
-    IndexController(CategorieService categorieService, RaadHetWoord raadHetWoord) {
+    IndexController(CategorieService categorieService) {
         this.categorieService = categorieService;
     }
 
