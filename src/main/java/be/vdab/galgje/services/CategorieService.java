@@ -11,5 +11,5 @@ public interface CategorieService {
 
     Optional<Categorie> findById(long id);
 
-    List<Woord> findWoordenByCategorie(long id);
+
 }

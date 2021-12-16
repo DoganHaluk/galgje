@@ -24,7 +24,7 @@ class CategorieController {
     }
 
     private String randomWoord(long id) {
-        var woorden= categorieService.findWoordenByCategorie(id);
+        var woorden= categorieService.findById(id).get().getWoorden();
         return woorden.get(ThreadLocalRandom.current().nextInt(woorden.size())).getWoord();
     }
 
