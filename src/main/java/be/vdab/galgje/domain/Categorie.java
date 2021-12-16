@@ -10,7 +10,7 @@ public class Categorie {
     private long id;
     private String naam;
     @ElementCollection
-    @CollectionTable(name = "woorden", joinColumns = @JoinColumn(name = "categorieId"))
+    @CollectionTable(name = "woorden", joinColumns = @JoinColumn(name = "categorieid"))
     private List<Woord> woorden;
 
     public long getId() {
