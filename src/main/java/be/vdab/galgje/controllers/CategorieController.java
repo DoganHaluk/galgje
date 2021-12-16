@@ -1,5 +1,6 @@
 package be.vdab.galgje.controllers;
 
+import be.vdab.galgje.domain.Woord;
 import be.vdab.galgje.services.CategorieService;
 import be.vdab.galgje.sessions.RaadHetWoord;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Controller
@@ -24,8 +26,10 @@ class CategorieController {
     }
 
     private String randomWoord(long id) {
-        var woorden= categorieService.findWoordenByCategorie(id);
-        return woorden.get(2).getWoord();
+        var woorden=new ArrayList<Woord>();
+        woorden.add(new Woord("abc"));
+        woorden.add(new Woord("def"));
+        return woorden.get(ThreadLocalRandom.current().nextInt(woorden.size())).getWoord();
     }
 
     @PostMapping("{id}/nieuwspel")
