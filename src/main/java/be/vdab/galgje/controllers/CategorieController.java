@@ -30,7 +30,7 @@ class CategorieController {
 
     @PostMapping("{id}/nieuwspel")
     public String radenNieuwSpel(@PathVariable long id) {
-        raadHetWoord.reset(randomWoord(id));
+        raadHetWoord.reset("fehmi");
         return "redirect:/categorie/{id}";
     }
 
