@@ -7,6 +7,7 @@ import be.vdab.galgje.repositories.CategorieRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,10 @@ public class DefaultCategorieService implements CategorieService {
     @Override
     public List<Woord> findWoordenByCategorie(long id) {
         if (categorieRepository.findById(id).isPresent()) {
-            return categorieRepository.findById(id).get().getWoorden();
+            var woorden= new ArrayList<Woord>();
+            woorden.add(new Woord("abc"));
+            woorden.add(new Woord("def"));
+            return woorden;
         } else {
             throw new CategorieNietGevondenException();
         }
