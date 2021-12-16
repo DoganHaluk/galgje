@@ -12,8 +12,4 @@ public class Woord {
     public String getWoord() {
         return woord;
     }
-
-    public Woord(String woord) {
-        this.woord = woord;
-    }
 }
