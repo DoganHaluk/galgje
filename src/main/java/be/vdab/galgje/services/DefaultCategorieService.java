@@ -31,5 +31,13 @@ public class DefaultCategorieService implements CategorieService {
         return categorieRepository.findById(id);
     }
 
-
+    @Override
+    @Transactional(readOnly = true)
+    public List<Woord> findWoordenByCategorie(long id) {
+        if (categorieRepository.findById(id).isPresent()) {
+            return categorieRepository.findById(id).get().getWoorden();
+        } else {
+            throw new CategorieNietGevondenException();
+        }
+    }
 }
