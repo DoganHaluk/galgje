@@ -9,6 +9,10 @@ import javax.persistence.Embeddable;
 public class Woord {
     private String woord;
 
+    protected Woord() {
+
+    }
+
     public String getWoord() {
         return woord;
     }
