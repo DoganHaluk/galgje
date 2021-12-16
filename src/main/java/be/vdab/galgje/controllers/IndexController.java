@@ -1,7 +1,6 @@
 package be.vdab.galgje.controllers;
 
 import be.vdab.galgje.services.CategorieService;
-import be.vdab.galgje.sessions.RaadHetWoord;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
