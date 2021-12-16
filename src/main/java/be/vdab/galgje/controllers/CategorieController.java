@@ -25,12 +25,12 @@ class CategorieController {
 
     private String randomWoord(long id) {
         var woorden= categorieService.findWoordenByCategorie(id);
-        return woorden.get(ThreadLocalRandom.current().nextInt(woorden.size())).getWoord();
+        return woorden.get(2).getWoord();
     }
 
     @PostMapping("{id}/nieuwspel")
     public String radenNieuwSpel(@PathVariable long id) {
-        raadHetWoord.reset("fehmi");
+        raadHetWoord.reset(randomWoord(id));
         return "redirect:/categorie/{id}";
     }
 
